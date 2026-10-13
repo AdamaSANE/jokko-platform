@@ -1,6 +1,7 @@
 {
   "name": "JOKKO Codespace",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "privileged": true,
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
       "version": "3.13"
@@ -8,7 +9,10 @@
     "ghcr.io/devcontainers/features/node:1": {
       "version": "22"
     },
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "moby": true
+    }
   },
   "forwardPorts": [8000],
   "portsAttributes": {
