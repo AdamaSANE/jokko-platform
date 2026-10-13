@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: jokko
+      POSTGRES_USER: jokko
+      POSTGRES_PASSWORD: jokko_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jokko -d jokko"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+asyncpg://jokko:jokko_password@db:5432/jokko
+      JWT_SECRET_KEY: change-me-with-a-long-random-secret
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+

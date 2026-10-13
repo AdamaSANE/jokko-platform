@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JOKKO — Communauté développeurs</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="brand-panel">
+      <div class="mark">J</div>
+      <p class="eyebrow">Communauté développeurs</p>
+      <h1>Construisons<br><span>ensemble.</span></h1>
+      <p class="muted">Partagez vos projets, trouvez vos prochains collaborateurs et progressez avec la communauté.</p>
+    </section>
+
+    <section class="content-panel">
+      <div id="auth-view" class="card">
+        <div class="tabs">
+          <button class="tab active" data-mode="login">Connexion</button>
+          <button class="tab" data-mode="register">Créer un compte</button>
+        </div>
+        <h2 id="auth-title">Bienvenue sur JOKKO</h2>
+        <p id="auth-subtitle" class="muted">Connectez-vous pour accéder à votre espace privé.</p>
+        <form id="auth-form">
+          <label>Email<input id="email" type="email" required autocomplete="email"></label>
+          <label id="username-field" class="hidden">Nom utilisateur<input id="username" minlength="3" maxlength="50"></label>
+          <label id="display-name-field" class="hidden">Nom affiché<input id="display-name" maxlength="100"></label>
+          <label>Mot de passe<input id="password" type="password" minlength="8" required autocomplete="current-password"></label>
+          <button class="primary" type="submit" id="auth-submit">Se connecter</button>
+        </form>
+        <p id="auth-message" class="message" role="alert"></p>
+      </div>
+
+      <div id="dashboard-view" class="hidden">
+        <header class="topbar">
+          <div><span class="eyebrow">Votre espace</span><h2 id="welcome">Tableau de bord</h2></div>
+          <button id="logout" class="ghost">Déconnexion</button>
+        </header>
+        <div class="stats" id="stats"></div>
+        <section class="card">
+          <div class="section-heading"><h3>Discussions récentes</h3><span class="badge">JOKKO feed</span></div>
+          <div id="discussions" class="feed"></div>
+        </section>
+        <section class="card">
+          <div class="section-heading"><h3>Notifications</h3><span class="badge green">À découvrir</span></div>
+          <div id="notifications" class="feed"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
