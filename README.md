@@ -127,24 +127,27 @@ La marketplace expose aussi les composants techniques réutilisables :
 
 ## Démarrage local
 
+Le parcours de référence pour le développement sur Windows utilise PostgreSQL
+installé localement. Créer d'abord une base `jokko` et un utilisateur
+`jokko`, puis copier `.env.example` vers `.env` et adapter les secrets.
+
 ```powershell
 py -3.13 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-uvicorn app.main:app --reload
+$env:PYTHONPATH="C:\Users\LBC\Desktop\Hackathon"
+.\.venv\Scripts\alembic.exe upgrade head
+.\.venv\Scripts\python.exe -m app.seed
+.\.venv\Scripts\uvicorn.exe app.main:app --reload
 ```
 
-Pour un VPS Datacloud, copier `.env.example`, remplacer les secrets, puis :
+L'interface est disponible sur `http://localhost:8000/`. Docker Compose et
+Codespaces restent disponibles pour un environnement isolé, mais ne sont pas
+nécessaires pour le développement local Windows.
 
-```powershell
-docker compose up --build
-```
-
-L'interface est disponible sur `http://localhost:8000/`. Elle conserve
-uniquement le JWT de session dans le stockage local du navigateur, vérifie
-`/auth/me` au rechargement, puis charge `/api/dashboard`. En cas de token
-expiré ou révoqué, l'utilisateur revient automatiquement au formulaire de
-connexion.
+L'interface conserve uniquement le JWT de session dans le stockage local du
+navigateur et revient au formulaire de connexion si le token est expiré ou
+révoqué.
 
 ## Interface React
 
@@ -182,3 +185,12 @@ uvicorn app.main:app --reload
 ```
 
 Ouvre ensuite `http://localhost:8000/`.
+
+### Comptes de démonstration
+
+Après le seeding, les comptes suivants utilisent le mot de passe
+`Password123!` :
+
+- `adama@jokko.sn`
+- `awa@jokko.sn`
+- `chinedu@jokko.ng`

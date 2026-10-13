@@ -1,0 +1,8 @@
+.env
+.venv
+frontend-react/node_modules
+frontend-react/dist
+__pycache__
+.pytest_cache
+.git
+.gitignore
